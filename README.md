@@ -7,7 +7,7 @@
 
 [![MkDocs](https://img.shields.io/badge/docs-MkDocs-blue?style=for-the-badge&logo=markdown)](https://abelperezr.github.io/nokia-bng-lab)
 [![Containerlab](https://img.shields.io/badge/powered%20by-Containerlab-orange?style=for-the-badge)](https://containerlab.dev)
-[![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](LICENSE)
+
 
 </div>
 
