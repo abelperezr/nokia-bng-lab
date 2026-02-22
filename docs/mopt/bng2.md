@@ -848,4 +848,3 @@
 /configure service vpls "capture-sap" capture-sap 1/1/c1/1:*.* pppoe user-db "clientes"
 ```
 
-| Puerto SSH | 56661 | 56664 |
