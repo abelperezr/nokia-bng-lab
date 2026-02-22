@@ -654,15 +654,14 @@
           "type": "prometheus",
           "uid": "prometheus"
         },
-        "definition": "label_values(source)",
+        "definition": "label_values(system_app_management_application_pid, source)",
         "hide": 0,
         "includeAll": false,
         "multi": false,
         "name": "NE",
-        "options": [],
         "query": {
           "qryType": 1,
-          "query": "label_values(source)",
+          "query": "label_values(system_app_management_application_pid, source)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 2,
