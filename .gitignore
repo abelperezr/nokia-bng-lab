@@ -1,0 +1,8 @@
+configs/license/
+license/
+SR_SIM_license.txt
+*.lic
+clab-*/
+site/
+__pycache__/
+*.log

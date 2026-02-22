@@ -1,0 +1,106 @@
+site_name: Nokia BNG Lab - Red Neutral con Containerlab
+site_description: Documentación del Laboratorio de Red Neutral con Nokia BNG, Telemetría y RADIUS
+site_author: Abel Perez
+site_url: https://github.com/abelperezr/nokia-bng-lab
+
+docs_dir: docs
+
+repo_name: nokia-bng-lab
+repo_url: https://github.com/abelperezr/nokia-bng-lab
+
+theme:
+  name: material
+  language: es
+  palette:
+    - scheme: slate
+      primary: blue
+      accent: cyan
+      toggle:
+        icon: material/brightness-4
+        name: Cambiar a modo claro
+    - scheme: default
+      primary: blue
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: Cambiar a modo oscuro
+  font:
+    text: Roboto
+    code: Roboto Mono
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+  icon:
+    repo: fontawesome/brands/github
+  logo: images/logo.svg
+
+plugins:
+  - search:
+      lang: es
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/abelperezr
+  generator: false
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - 🏠 Inicio: index.md
+  - 📐 Topología:
+    - Descripción General: topologia/index.md
+    - Underlay Network: topologia/underlay.md
+    - Overlay Network: topologia/overlay.md
+    - Flujo de Autenticación: topologia/flujo-autenticacion.md
+  - 📋 MOPT Dispositivos:
+    - Índice: mopt/index.md
+    - BNG1 (Nokia 7750 SR-7): mopt/bng1.md
+    - BNG2 (Nokia 7750 SR-7): mopt/bng2.md
+    - TX Switch (SR Linux): mopt/tx.md
+    - Switch (Nokia 7250 IXR-ec): mopt/switch.md
+    - OLT (Nokia 7250 IXR-ec): mopt/olt.md
+  - 📊 Telemetría:
+    - Stack de Telemetría: telemetria/index.md
+    - gNMIC: telemetria/gnmic.md
+    - Prometheus: telemetria/prometheus.md
+    - Grafana: telemetria/grafana.md
+  - 🔐 RADIUS:
+    - Servidor RADIUS: radius/index.md
+    - Configuración de Usuarios: radius/usuarios.md
+  - 🚀 Despliegue:
+    - Requisitos: despliegue/requisitos.md
+    - Instalación: despliegue/instalacion.md

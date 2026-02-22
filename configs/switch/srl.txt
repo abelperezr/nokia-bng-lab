@@ -1,0 +1,69 @@
+#1.INTERFACES
+##1.1.INTERFACE TO BNG1
+##1.2.INTERFACE TO BNG2
+##1.3.INTERFACE TO SWITCH
+##1.4.TPID FOR QINQ
+#2.MAC VRF
+##2.1.MAC VRF BNG1
+##2.2.MAC VRF BNG2
+#3.PASSWORD
+
+
+##################1.INTERFACES#################################################################################
+##################1.1.INTERFACE TO BNG1#################################################################################
+
+
+set /interface ethernet-1/1 admin-state enable
+set /interface ethernet-1/1 vlan-tagging true
+set /interface ethernet-1/1 subinterface 50 type bridged
+set /interface ethernet-1/1 subinterface 50 admin-state enable
+set /interface ethernet-1/1 subinterface 50 vlan encap single-tagged vlan-id 50
+
+##################1.2.INTERFACE TO BNG2#################################################################################
+
+
+set /interface ethernet-1/2 admin-state enable
+set /interface ethernet-1/2 vlan-tagging true
+set /interface ethernet-1/2 subinterface 60 type bridged
+set /interface ethernet-1/2 subinterface 60 admin-state enable
+set /interface ethernet-1/2 subinterface 60 vlan encap single-tagged vlan-id 60
+
+##################1.3.INTERFACE TO SWITCH#################################################################################
+
+
+set /interface ethernet-1/3 admin-state enable
+set /interface ethernet-1/3 vlan-tagging true
+set /interface ethernet-1/3 subinterface 50 type bridged
+set /interface ethernet-1/3 subinterface 50 admin-state enable
+set /interface ethernet-1/3 subinterface 50 vlan encap single-tagged vlan-id 50
+set /interface ethernet-1/3 subinterface 60 type bridged
+set /interface ethernet-1/3 subinterface 60 admin-state enable
+set /interface ethernet-1/3 subinterface 60 vlan encap single-tagged vlan-id 60
+
+##################1.4.TPID FOR QINQ#################################################################################
+
+set /interface ethernet-1/1 tpid TPID_ANY
+set /interface ethernet-1/2 tpid TPID_ANY
+set /interface ethernet-1/3 tpid TPID_ANY
+
+
+##################2.MAC VRF#################################################################################
+##################2.1.MAC VRF BNG1#################################################################################
+
+set /network-instance bng1 type mac-vrf
+set /network-instance bng1 admin-state enable
+set /network-instance bng1 interface ethernet-1/1.50
+set /network-instance bng1 interface ethernet-1/3.50
+
+
+##################2.2.MAC VRF BNG2#################################################################################
+
+set /network-instance bng2 type mac-vrf
+set /network-instance bng2 admin-state enable
+set /network-instance bng2 interface ethernet-1/2.60
+set /network-instance bng2 interface ethernet-1/3.60
+
+
+##################3.PASSWORD #################################################################################
+
+set / system aaa authentication admin-user password lab123

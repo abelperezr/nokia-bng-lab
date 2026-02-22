@@ -1,0 +1,186 @@
+/* Nokia BNG Lab - Custom Styles */
+
+/* Root variables */
+:root {
+  --nokia-blue: #124191;
+  --nokia-light-blue: #0077c8;
+  --nokia-dark: #1a1a2e;
+  --nokia-accent: #00c7b7;
+}
+
+/* Header customization */
+.md-header {
+  background-color: var(--nokia-blue);
+}
+
+/* Primary color override */
+[data-md-color-primary="blue"] {
+  --md-primary-fg-color: var(--nokia-blue);
+}
+
+/* Navigation */
+.md-nav__link--active {
+  color: var(--nokia-light-blue) !important;
+  font-weight: 600;
+}
+
+/* Code blocks */
+.highlight code {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.85em;
+}
+
+/* Tables */
+.md-typeset table:not([class]) {
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.md-typeset table:not([class]) thead {
+  background-color: var(--nokia-blue);
+  color: white;
+}
+
+.md-typeset table:not([class]) th {
+  padding: 12px 16px;
+  font-weight: 600;
+}
+
+.md-typeset table:not([class]) td {
+  padding: 10px 16px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.md-typeset table:not([class]) tbody tr:hover {
+  background-color: rgba(18, 65, 145, 0.05);
+}
+
+/* Admonitions */
+.md-typeset .admonition.note,
+.md-typeset details.note {
+  border-color: var(--nokia-light-blue);
+}
+
+.md-typeset .admonition.tip,
+.md-typeset details.tip {
+  border-color: var(--nokia-accent);
+}
+
+/* Grid cards */
+.md-typeset .grid.cards > ul > li {
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.md-typeset .grid.cards > ul > li:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+/* Mermaid diagrams */
+.mermaid {
+  text-align: center;
+  margin: 1.5em 0;
+}
+
+/* Images */
+.md-typeset img {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Footer */
+.md-footer {
+  background-color: var(--nokia-dark);
+}
+
+/* Tabs */
+.md-typeset .tabbed-labels > label {
+  font-weight: 500;
+}
+
+.md-typeset .tabbed-labels > label:hover {
+  color: var(--nokia-light-blue);
+}
+
+/* Search */
+.md-search__input {
+  border-radius: 20px;
+}
+
+/* Mobile improvements */
+@media screen and (max-width: 76.1875em) {
+  .md-nav--primary .md-nav__title {
+    background-color: var(--nokia-blue);
+  }
+}
+
+/* Dark mode adjustments */
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: var(--nokia-light-blue);
+}
+
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) thead {
+  background-color: var(--nokia-dark);
+}
+
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) td {
+  border-bottom-color: #333;
+}
+
+/* Index page hero */
+.md-typeset h1 {
+  font-weight: 700;
+  margin-bottom: 0.5em;
+}
+
+/* Configuration index cards */
+.config-section {
+  background: linear-gradient(135deg, var(--nokia-blue) 0%, var(--nokia-light-blue) 100%);
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+/* Status badges */
+.status-ok {
+  color: #00c853;
+  font-weight: 600;
+}
+
+.status-warning {
+  color: #ffab00;
+  font-weight: 600;
+}
+
+.status-error {
+  color: #ff5252;
+  font-weight: 600;
+}
+
+/* Terminal-like code blocks */
+.md-typeset pre > code {
+  background-color: #1e1e2e;
+  color: #cdd6f4;
+}
+
+/* Custom scrollbar for code blocks */
+.md-typeset pre::-webkit-scrollbar {
+  height: 8px;
+}
+
+.md-typeset pre::-webkit-scrollbar-track {
+  background: #313244;
+}
+
+.md-typeset pre::-webkit-scrollbar-thumb {
+  background: #585b70;
+  border-radius: 4px;
+}
+
+.md-typeset pre::-webkit-scrollbar-thumb:hover {
+  background: #6c7086;
+}

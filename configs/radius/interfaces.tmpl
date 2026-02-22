@@ -1,0 +1,5 @@
+auto eth1
+iface eth1
+    address 10.128.2.1/31
+    up ip route add 10.0.0.0/8 via 10.128.2.0 dev eth1
+
