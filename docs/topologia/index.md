@@ -222,7 +222,6 @@ topology:
       ports:
         - 3030:3000
       env:
-        GF_INSTALL_PLUGINS: https://github.com/skyfrank/grafana-flowcharting/releases/download/v1.0.0e/agenty-flowcharting-panel-1.0.0e.231214594-SNAPSHOT.zip;agenty-flowcharting-panel
         GF_ORG_ROLE: "Editor"
         GF_ORG_NAME: "Main Org."
         GF_AUTH_ANONYMOUS_ENABLED: "true"
