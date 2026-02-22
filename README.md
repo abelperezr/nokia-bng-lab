@@ -121,6 +121,7 @@ sudo containerlab inspect -t lab.yml
 | **BNG2 SSH** | localhost:56664 | admin/lab123 |
 | **Switch SSH** | localhost:56667 | admin/lab123 |
 | **OLT SSH** | localhost:56678 | admin/lab123 |
+| **ONTs** | localhost:56673/56674 | user/test |
 
 ### Detener el Laboratorio
 
