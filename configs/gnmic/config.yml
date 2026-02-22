@@ -9,11 +9,15 @@ loader:
   type: docker
   address: unix:///run/docker.sock
   filters:
+    # ─── SR Linux nodes ────────────────────────────────────────────────────────
     - containers:
         - label: clab-node-kind=nokia_srlinux
       network:
         label: containerlab
       port: "57400"
+
+      template: |
+        name: {{ index .Labels "clab-node-name" }}
       config:
         username: admin
         password: lab123
@@ -27,11 +31,15 @@ loader:
           - srl_net_instance
           - srl_bgp_stats
           - srl_event_handler_stats
+
+    # ─── SR OS simulator nodes ─────────────────────────────────────────────────
     - containers:
         - label: clab-node-kind=nokia_srsim
       network:
         label: containerlab
       port: "57400"
+      template: |
+        name: {{ index .Labels "clab-node-name" }}
       config:
         username: admin
         password: lab123
@@ -48,10 +56,11 @@ loader:
           - sros_temperature_stats
           - sros_fan_stats
           - sros_ludb
-          - sros_vpls_sap_all   
+          - sros_vpls_sap_all
 
 
 subscriptions:
+  # ── SR Linux ────────────────────────────────────────────────────────────────
   srl_platform:
     paths:
       - /platform/control[slot=*]/cpu[index=all]/total
@@ -83,7 +92,7 @@ subscriptions:
     mode: stream
     stream-mode: sample
     sample-interval: 5s
-  
+
   srl_net_instance:
     paths:
       - /network-instance[name=*]/oper-state
@@ -108,6 +117,7 @@ subscriptions:
     stream-mode: sample
     sample-interval: 5s
 
+  # ── SR OS ───────────────────────────────────────────────────────────────────
   sros_ports_stats:
     paths:
       - /state/port/oper-state
@@ -115,7 +125,7 @@ subscriptions:
       - /state/port/ethernet/statistics/
     stream-mode: sample
     sample-interval: 5s
-  
+
   sros_router_bgp:
     paths:
       - /state/router/bgp/statistics/
@@ -123,7 +133,7 @@ subscriptions:
       - /state/router/bgp/neighbor/statistics/
     stream-mode: sample
     sample-interval: 5s
-  
+
   sros_router_interface:
     paths:
       - /state/router/interface/ipv4/statistics/
@@ -181,13 +191,14 @@ subscriptions:
     stream-mode: sample
     sample-interval: 5s
 
-    sros_fan_stats:
-      paths:
-        - /state/chassis[chassis-class=router][chassis-number=1]/fan[fan-slot=*]/speed
-      stream-mode: sample
-      sample-interval: 5s    
+  sros_fan_stats:                   
+    paths:
+      - /state/chassis[chassis-class=router][chassis-number=1]/fan[fan-slot=*]/speed
+    stream-mode: sample
+    sample-interval: 5s
 
-## PROMETHEUS CONFIGURATION
+
+## ── PROMETHEUS OUTPUT ──────────────────────────────────────────────────────
 outputs:
   prom:
     type: prometheus
@@ -204,7 +215,6 @@ outputs:
       - up-down-map
 
 
-
 processors:
   trim-sros-prefixes:
     event-strings:
@@ -214,6 +224,7 @@ processors:
         - trim-prefix:
             apply-on: "name"
             prefix: "/state"
+
   add-labels:
     event-extract-tags:
       value-names:
@@ -221,6 +232,7 @@ processors:
         - /router/bgp/statistics/routes-per-family/(?P<family>[a-zA-Z0-9-_:]+)/([a-zA-Z0-9-_:]+)
         - /router/interface/(?P<family>[a-zA-Z0-9-_:]+)/statistics/([a-zA-Z0-9-_:]+)
         - /router/bgp/neighbor/statistics/family-prefix/(?P<family>[a-zA-Z0-9-_:]+)/([a-zA-Z0-9-_:]+)
+
   trim-regex:
     event-strings:
       value-names:
@@ -246,10 +258,12 @@ processors:
             keep: false
             old: "/router/bgp/neighbor/statistics/family-prefix/([a-zA-Z0-9-_:]+)/([a-zA-Z0-9-_:]+)"
             new: "/router/bgp/neighbor/statistics/family-prefix/$2"
+
   group-by-interface:
     event-group-by:
       tags:
         - interface_name
+
   up-down-map:
     event-strings:
       value-names:
