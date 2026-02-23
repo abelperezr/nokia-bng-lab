@@ -129,10 +129,11 @@ topology:
       kind: linux
       group: leaf
       mgmt-ipv4: 10.77.1.6
-      image: ont-ds:latest
+      image: ghcr.io/abelperezr/ont-ds:0.2
       binds:
         - configs/ont/authorized_keys:/tmp/authorized_keys:ro
       env:
+        CONNECTION_TYPE: ipoe
         VLAN_ID: "150"
         IFPHY: "eth1"
         IFLAN: "eth2"
@@ -149,10 +150,13 @@ topology:
       kind: linux
       group: leaf
       mgmt-ipv4: 10.77.1.7
-      image: ont-ds:latest
+      image: ghcr.io/abelperezr/ont-ds:0.2
       binds:
         - configs/ont/authorized_keys:/tmp/authorized_keys:ro
       env:
+        CONNECTION_TYPE: pppoe
+        PPP_USER: "test@test.com"
+        PPP_PASS: "testlab123"
         VLAN_ID: "150"
         IFPHY: "eth1"
         IFLAN: "eth2"
