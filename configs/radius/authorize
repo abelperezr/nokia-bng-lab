@@ -15,13 +15,13 @@
 # ============================================================================
 # ONT2 - Conectada a BNG2
 # ============================================================================
-00:d0:f6:01:01:02   Cleartext-Password := "testlab123"
+"test@test.com"     Cleartext-Password := "testlab123"
                     Framed-Pool = "cgnat",
                     Framed-IPv6-Pool = "IPv6",
                     Alc-Delegated-IPv6-Pool = "IPv6",
                     Alc-SLA-Prof-str = "100M",
                     Alc-Subsc-Prof-str = "subprofile",
-                    Alc-Subsc-ID-Str = "ONT-002",
+                    Alc-Subsc-ID-Str = "ONT-002-PPPOE",
                     Fall-Through = Yes
 
 # ============================================================================
